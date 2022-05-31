@@ -1,0 +1,35 @@
+site_name: SpuckJs Documentation
+nav:
+    - Home: index.md
+    - Setting Up: SettingUp.md
+    - Getting Started: GettingStarted.md
+    - State Management: StateManagement.md
+    - Effects: EffectManagement.md
+    - Inbuilt Features: InbuiltFeatures.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+theme: 
+  name: 'material'
+  features:
+    - content.code.annotate
+  palette: 
+    - scheme: slate 
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode 
+    - scheme: default
+      toggle:
+        icon: material/lightbulb-outline 
+        name: Switch to dark mode
+
+plugins: ['search']
+
+# add theme version number here
+extra:
+    version: 0.3.x

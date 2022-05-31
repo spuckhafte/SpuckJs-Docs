@@ -1,0 +1,816 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+    
+    
+      
+        <title>State Management - SpuckJs Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1c3799f8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#state-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SpuckJs Documentation" class="md-header__button md-logo" aria-label="SpuckJs Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SpuckJs Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              State Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SpuckJs Documentation" class="md-nav__button md-logo" aria-label="SpuckJs Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SpuckJs Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SettingUp/" class="md-nav__link">
+        Setting Up
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GettingStarted/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          State Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        State Management
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-method" class="md-nav__link">
+    $state Method
+  </a>
+  
+    <nav class="md-nav" aria-label="$state Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getstate-method" class="md-nav__link">
+    .getState method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-reference" class="md-nav__link">
+    $- reference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setstate-function" class="md-nav__link">
+    setState function
+  </a>
+  
+    <nav class="md-nav" aria-label="setState function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-way" class="md-nav__link">
+    Direct way
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functional-way" class="md-nav__link">
+    Functional way
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-at-once" class="md-nav__link">
+    Display at once:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-sharing" class="md-nav__link">
+    State Sharing
+  </a>
+  
+    <nav class="md-nav" aria-label="State Sharing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pseudo-childrenstates" class="md-nav__link">
+    Pseudo Children/States
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-them" class="md-nav__link">
+    Referencing them
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extending-display-example" class="md-nav__link">
+    Extending "Display" Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#looking-at-the-object" class="md-nav__link">
+    Looking at the Object
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EffectManagement/" class="md-nav__link">
+        Effects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../InbuiltFeatures/" class="md-nav__link">
+        Inbuilt Features
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-method" class="md-nav__link">
+    $state Method
+  </a>
+  
+    <nav class="md-nav" aria-label="$state Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getstate-method" class="md-nav__link">
+    .getState method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-reference" class="md-nav__link">
+    $- reference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setstate-function" class="md-nav__link">
+    setState function
+  </a>
+  
+    <nav class="md-nav" aria-label="setState function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-way" class="md-nav__link">
+    Direct way
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functional-way" class="md-nav__link">
+    Functional way
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-at-once" class="md-nav__link">
+    Display at once:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-sharing" class="md-nav__link">
+    State Sharing
+  </a>
+  
+    <nav class="md-nav" aria-label="State Sharing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pseudo-childrenstates" class="md-nav__link">
+    Pseudo Children/States
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-them" class="md-nav__link">
+    Referencing them
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extending-display-example" class="md-nav__link">
+    Extending "Display" Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#looking-at-the-object" class="md-nav__link">
+    Looking at the Object
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="state-management">State Management</h1>
+<p>States are some <em><strong>internal values</strong> maintained</em> by an element.<br/>
+These are important because if these values <em>change</em>, the element gets <em>re-rendered</em>.<br/><br/>
+You can <em>refer</em> to them in code, like in <code>innerHTML</code>, <code>css</code> or any other <em>property</em> of the element. <em>On change</em>, the element <em>automatically <strong>updates their reference</strong></em> in the code.<br/><br/></p>
+<h2 id="state-method"><strong><code>$state</code> Method</strong></h2>
+<p>In SpuckJs, we <em>use the state</em> using <code>$state</code> method.<br/></p>
+<blockquote>
+<p><code>$state</code> method <em>returns</em> a <strong>function</strong> to <em>update</em> that state.</p>
+</blockquote>
+<p><strong><u>NOTE:</u> State can only be managed in a <em>rendered</em> element.</strong></p>
+<p>Let's see how it works.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/* </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cm">    Lets create a new display element.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cm">    Render it while initializing because</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cm">    State can only be managed in a rendered element.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cm">*/</span><span class="w"></span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;h3&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">parent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#app&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dis&#39;</span><span class="w"> </span><span class="p">}).</span><span class="nx">render</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">setCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Display</span><span class="p">.</span><span class="nx">$state</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<blockquote>
+<p><strong>First Parameter</strong>: name of state<br/>
+<strong>Second Parameter</strong>: initial value of state</p>
+</blockquote>
+<p>Now to <em>refer this state</em> in the code, there are <strong>two ways</strong>:</p>
+<h3 id="getstate-method"><code>.getState</code> method</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">Element</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="nx">Element</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="nx">stateName</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+When you refer to the state value using this method, it will <u><strong>not update</strong></u> the reference in the code when state changes.<br/>
+It can <strong><u>only update</u></strong> if the <em>line of code</em> where this method is mentioned <em>runs again</em>.<br/>
+That is, if <em>used in a <strong>loop</strong></em>, <em>bind to an <strong>event</strong></em> or used in an <strong>effect</strong>.<br/>In all these cases, the state value will be updated when the <em>line of code</em> runs again.</p>
+<h3 id="-reference"><code>$-</code> reference</h3>
+<p>If you <em>truly want to see</em> the <strong>state reference update</strong> in the code, you use <code>$-</code> reference.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">Element</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;$-count&#39;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+This will <strong>update</strong> the reference in the code when state changes.</p>
+<blockquote>
+<p><strong>Syntax</strong>: <code>$-stateName</code><br></p>
+</blockquote>
+<p><strong><u>NOTE</u></strong>: <code>$-</code> can only be used in <strong>internal properties</strong> of the element. You <strong>can't do operations</strong> using this, <code>{ text: '$-count + 1' }</code>.</p>
+<p>Back to the example.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">Display</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Count is $-count&#39;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">Display</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="s1">&#39;re&#39;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<em>we are done with <code>Display</code> element, so we <code>make</code> it. We'll update the count using another element : <code>Button</code></em></p>
+<h3 id="setstate-function"><code>setState</code> function</h3>
+<p>If you want to <em>update any state</em> of the element, you use the <strong>method</strong> returned by <code>$state</code> method.
+<em>By convention, we call this method <code>set{StateName}</code></em></p>
+<p>When you call it, it <strong><em>automatically re-renders</em></strong> the element after updating the state.</p>
+<p>We <strong>pass</strong> a <em>new value</em> of state to this method.<br/>
+There can be <strong>two ways</strong> for it:</p>
+<blockquote>
+<p><strong>Direct</strong> <br/>
+<strong>Functional</strong></p>
+</blockquote>
+<h4 id="direct-way">Direct way</h4>
+<p>In this case, we pass the latest state value directly as parameter.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// suppose we want to update color of the element</span><span class="w"></span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">setState</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// suppose we want to increment any &quot;Click State&quot; by 1</span><span class="w"></span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nx">setClick</span><span class="p">(</span><span class="nx">Element</span><span class="p">.</span><span class="nx">getState</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">// see how we &quot;used&quot; the &quot;getState&quot; method</span><span class="w"></span>
+</code></pre></div></p>
+<h4 id="functional-way">Functional way</h4>
+<p>Here, we pass state value with <em>respect to the <strong>previous state value</strong></em> as parameter using a <code>functional</code> approach</p>
+<p>We call a <strong>function</strong> as parameter, whose <strong>argument is the previous state</strong> value.<br/>
+Then we <strong>return</strong> a <strong>new value</strong> for state by <strong>manipulating previous</strong> one.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// suppose we want to update the state to double the previous value</span><span class="w"></span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">setState</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">previousState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">previousState</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">// this can be simplified using arrow function</span><span class="w"></span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nx">setState</span><span class="p">(</span><span class="nx">prevState</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">prevState</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1">// see how we &quot;ignored&quot; the &quot;getState&quot; method</span><span class="w"></span>
+</code></pre></div>
+<blockquote>
+<p>⠀</p>
+</blockquote>
+<p><strong>Back to our <code>Display</code> example, we can use <code>setState</code> to update count on a button click</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cm">/*</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="cm">    Defining a button, we don&#39;t necessarily need to render </span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="cm">    it at this point cause there is no state of the &quot;Button&quot; </span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="cm">    to manage.</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="cm">*/</span><span class="w"></span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;button&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">parent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#app&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;btn&#39;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nx">Button</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Update Count&#39;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nx">Button</span><span class="p">.</span><span class="nx">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="c1">// on click, update count using functional approach</span><span class="w"></span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="nx">click</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setCount</span><span class="p">(</span><span class="nx">prevCount</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">prevCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="nx">Button</span><span class="p">.</span><span class="nx">make</span><span class="p">();</span><span class="w"></span>
+</code></pre></div></p>
+<h3 id="display-at-once"><code>Display</code> at once:</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;h3&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">parent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#app&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dis&#39;</span><span class="w"> </span><span class="p">}).</span><span class="nx">render</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">setCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Display</span><span class="p">.</span><span class="nx">$state</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nx">Display</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Count is $-count&#39;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nx">Display</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="s1">&#39;re&#39;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;button&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">parent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#app&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;btn&#39;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nx">Button</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Update Count&#39;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="nx">Button</span><span class="p">.</span><span class="nx">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="nx">click</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setCount</span><span class="p">(</span><span class="nx">prevCount</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">prevCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nx">Button</span><span class="p">.</span><span class="nx">make</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<img alt="DisplayExample" src="https://cdn.discordapp.com/attachments/956081993488154664/981030014843760650/Counter_State_Example_Docs.gif" /></p>
+<h2 id="state-sharing"><strong>State Sharing</strong></h2>
+<p>In SpuckJs you can <em>easily share states</em> to other elements.<br/>
+You can share states to <strong>siblings</strong>, <strong>parent</strong>, <strong>children</strong> or <strong>any other elements</strong>, it <em>does not matter</em>.</p>
+<h3 id="pseudo-childrenstates"><strong>Pseudo Children/States</strong></h3>
+<p>SpuckJs does it by using a <em>concept</em> called <strong><code>pseudo-Children</code></strong>.<br/>
+If you want to share state of <code>Element 1</code> with <code>Element 2</code>, you can do it by making <strong>"Element 2"</strong> a <strong><code>pseudo-Child</code></strong> of <strong>"Element 1"</strong>.<br/>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Element1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}).</span><span class="nx">render</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Element2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}).</span><span class="nx">render</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nx">Element1</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">pseudoChildren</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">Element2</span><span class="p">];</span><span class="w"></span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nx">Element1</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;re&#39;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<code>pseudoChildren</code> is a property of <strong><code>init</code></strong> object of the element.<br/></p>
+<blockquote>
+<p>It is an <strong>array</strong>, and can hold <strong>multiple elements</strong>.<br/></p>
+</blockquote>
+<p>Now <strong>all the states</strong> of <code>Element 1</code> are <strong>accessible</strong> to <code>Element 2</code> as <strong><code>pseudo-states</code></strong>.<br/></p>
+<p><strong><u>NOTE</u>: When an element renders, all its <em>pseudo-children</em> are also rendered.</strong></p>
+<h3 id="referencing-them"><strong>Referencing them</strong></h3>
+<p>Just like <em>normal</em> states, you can refer to <code>pseudo-states</code> either using:</p>
+<blockquote>
+<p><strong><code>.getPseudoState</code></strong> method, or<br/>
+<strong><code>$$-</code></strong> reference</p>
+</blockquote>
+<p><strong><u>NOTE:</u> <code>$-</code>: <em>states</em> and <code>$$-</code>: <em>pseudo-states</em></strong></p>
+<h3 id="extending-display-example"><strong>Extending "Display" Example</strong></h3>
+<p>Suppose there is one more element, <em>say <code>Display2</code></em>, below the <code>Button</code>, which shows the count of the <code>Display</code> element.<br/>
+We will make <code>Display2</code> a <strong>pseudo-child</strong> of <code>Display</code>, to access the <code>count</code> state.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">Display2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Spuck</span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;h3&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">parent</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#app&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dis2&#39;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nx">Display1</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">pseudoChildren</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">Display2</span><span class="p">];</span><span class="w"></span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nx">Display1</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;re&#39;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+Now we can access the <code>count</code> state of <code>Display</code> from <code>Display2</code> as <strong>pseudo-state</strong>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">Display2</span><span class="p">.</span><span class="nx">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Display count is $$-count&#39;</span><span class="w"></span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nx">Display2</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="s1">&#39;re&#39;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<img alt="DisplayExample" src="https://cdn.discordapp.com/attachments/956081993488154664/981046673243504650/PseudoState_Example.gif" /></p>
+<h2 id="looking-at-the-object"><strong>Looking at the Object</strong></h2>
+<p>If we console log the <code>Display</code> element now, we can see how are properties managed.</p>
+<p><img alt="DisplayObject" src="https://cdn.discordapp.com/attachments/956081993488154664/981062411828215879/Spuck1.png" /></p>
+<p>You can see states are stored in <code>_state</code> property of the element.<br/>
+Each state is an <code>array</code> =&gt; <code>[value, setter]</code></p>
+<p><img alt="" src="https://cdn.discordapp.com/attachments/956081993488154664/981064546426966067/pseudostateobject.png" />
+<code>Display</code> : pseudo-child : <code>Display2</code><br/>
+It contains the whole virtual element of <code>Display2</code> in the <code>pseudoChildren</code> array.<br/></p>
+<blockquote>
+<p>⠀</p>
+</blockquote>
+<p>Looking at <code>Display2</code><br/>
+<img alt="" src="https://cdn.discordapp.com/attachments/956081993488154664/981062412096634970/Screenshot_2022-05-31_100828.png" /><br/>
+It does not differ much, but instead of <code>_state</code> property, its <code>_pseudoState</code> property is defined, which has the same structure as <code>_state</code>.<br/></p>
+<p>You can see the <code>el</code> property of both elements, that is the <strong>physical element</strong> <em>stored within</em> the <strong>virtual element</strong>.<br/>
+If we console log <code>Display.el</code>, we can see the HTML element:
+<img alt="" src="https://cdn.discordapp.com/attachments/956081993488154664/981066897300783124/unknown.png" /><br/>
+Its there if you ever have to <em>interact</em> with the <strong>browser api</strong>, you can use it.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../GettingStarted/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Getting Started
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../EffectManagement/" class="md-footer__link md-footer__link--next" aria-label="Next: Effects" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Effects
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": "0.3.x"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      
+    
+  </body>
+</html>
